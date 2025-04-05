@@ -97,15 +97,3 @@ q
 ```
 
 ---
-
-## Licença
-
-Este projeto está sob a licença MIT.
-"""
-
-# Salvar o conteúdo em um arquivo README.md
-readme_path = "/mnt/data/README.md"
-with open(readme_path, "w", encoding="utf-8") as f:
-    f.write(readme_content)
-
-readme_path
