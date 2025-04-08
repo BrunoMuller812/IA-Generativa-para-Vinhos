@@ -61,6 +61,3 @@ streamlit run app.py
 - `top_rated_wines.csv` → base de dados com os melhores vinhos avaliados
 
 ---
-
-## 🚀 Demonstração (em breve)
-Acesse o projeto online no [Streamlit Cloud](https://streamlit.io...)
