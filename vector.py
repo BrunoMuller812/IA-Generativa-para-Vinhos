@@ -5,6 +5,7 @@ import os
 import pandas as pd
 
 df = pd.read_csv("top_rated_wines.csv")
+df = df[df['variety'].notna()]
 embeddings = OllamaEmbeddings(model="mxbai-embed-large")
 
 db_location = "./chrome_langchain_db"
@@ -33,5 +34,5 @@ if add_documents:
     vector_store.add_documents(documents= documents, ids=ids)
 
 retriever =  vector_store.as_retriever(
-    search_kwargs={"k": 3}
+    search_kwargs={"k": 1}
 )
