@@ -1,99 +1,63 @@
-# Wine Expert AI Sommelier
+# Projeto de IA com Ollama para Recomendação de Vinhos 🍷🧠
 
-Este é um projeto de IA que simula um **especialista em vinhos**, utilizando modelos da **Ollama** integrados com a biblioteca **LangChain** para responder perguntas com base em dados reais de vinhos avaliados.
+Este projeto utiliza inteligência artificial generativa com o modelo **LLaMA 3.2**, através da biblioteca [LangChain](https://www.langchain.com/), para responder perguntas relacionadas a vinhos com base em uma base de dados de rótulos altamente avaliados. A aplicação pode ser executada tanto no terminal quanto por uma interface web utilizando [Streamlit](https://streamlit.io/).
 
-## Descrição
+---
 
-A aplicação consiste em um chatbot interativo, capaz de responder perguntas específicas sobre vinhos utilizando informações previamente vetorizadas de um dataset (`top_rated_wines.csv`). As respostas são geradas a partir de um modelo de linguagem baseado no **LLaMA 3.2**, com embeddings de alta performance (`mxbai-embed-large`) para busca semântica.
-
-## Funcionalidades
-
-- Responde perguntas como um sommelier virtual
-- Busca informações relevantes usando embeddings vetoriais
-- Utiliza prompt chaining para criar respostas contextualizadas
-- Atualiza o banco vetorial automaticamente na primeira execução
-
-## Tecnologias Utilizadas
-
+## 🧠 Tecnologias utilizadas
+- Python 🐍
 - [LangChain](https://www.langchain.com/)
-- [Ollama](https://ollama.com/)
-- [ChromaDB](https://www.trychroma.com/)
-- Python (pandas, os)
+- [Ollama](https://ollama.com/) (LLaMA 3.2)
+- Streamlit
+- ChromaDB com `langchain_chroma` para armazenamento vetorial
 
 ---
 
-## Requisitos
+## ✨ Como rodar o projeto
 
-### 1. Python 3.10 ou superior
+### Pré-requisitos:
 
-### 2. Instalar o [Ollama](https://ollama.com/download)
+1. **Instalar o Ollama localmente**
+   - Acesse: https://ollama.com/download e baixe o instalador para o seu sistema operacional.
 
-- Baixe e instale o Ollama para seu sistema operacional.
-- Após instalar, execute no terminal:
-  ```bash
-  ollama serve
-  ```
-- Em seguida, baixe o modelo necessário:
-  ```bash
-  ollama run llama3:instruct
-  ```
+2. **Instalar o Python e bibliotecas necessárias**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-> **Dica:** Certifique-se de que o nome do modelo no seu código (`llama3.2`) seja o mesmo do modelo que você baixou com o Ollama.
+3. **Instalar o C++ Build Tools (necessário para `langchain_chroma`)**
+   - Vá até: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+   - Durante a instalação, **selecione a opção `Desenvolvimento para Desktop com C++`**
+   - Isso é necessário para que o `chromadb` funcione corretamente.
 
----
-
-### 3. Instalar as ferramentas de compilação C++
-
-#### Windows
-- Baixe e instale o [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-- Marque as opções:
-  - **C++ Build Tools**
-  - **Windows 10 SDK**
-  - **CMake tools for Windows** (opcional, mas recomendado)
-
-#### Linux (Ubuntu/Debian)
-```bash
-sudo apt update
-sudo apt install build-essential
-```
-
-#### macOS
-- Xcode Command Line Tools:
-```bash
-xcode-select --install
-```
+4. **Baixar os modelos necessários no Ollama**
+   ```bash
+   ollama pull llama3.2
+   ollama pull mxbai-embed-large
+   ```
 
 ---
 
-## Como rodar o projeto
+## 🚀 Modos de execução
 
-1. Instale as dependências:
-```bash
-pip install -r requirements.txt
-```
-
-2. Inicie o Ollama:
-```bash
-ollama serve
-```
-
-3. Execute o script principal:
+### 1. Rodar pelo terminal:
 ```bash
 python main.py
 ```
+- Interaja diretamente com o agente no terminal.
+
+### 2. Rodar com Streamlit:
+```bash
+streamlit run app.py
+```
+- Interface web amigável para perguntas e respostas sobre vinhos 🍷
 
 ---
 
-## Uso
-
-Digite suas perguntas no terminal (exemplo):
-```
-Insira sua pergunta: Quais são os melhores vinhos tintos da região da Toscana?
-```
-
-Para sair do programa, digite:
-```
-q
-```
+## 📂 Estrutura dos arquivos principais
+- `main.py` → versão para terminal
+- `app.py` → versão web com Streamlit
+- `vector.py` → carrega a base de dados de vinhos e cria o banco vetorial
+- `top_rated_wines.csv` → base de dados com os melhores vinhos avaliados
 
 ---
